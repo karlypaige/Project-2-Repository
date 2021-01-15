@@ -29,9 +29,13 @@ class session extends EventEmitter {
         this._getNewToken();
     }
 
-    getQuestions(n = 1) {
+    getQuestions(n = 1, categoryId) {
+        let queryURL = `https://opentdb.com/api.php?amount=${n}&token=${this.token}`;
         n = Math.min(Math.max(Math.floor(n), 1), 50);
-        return fetch(`https://opentdb.com/api.php?amount=${n}&token=${this.token}`)
+        if (categoryId) {
+            queryURL += "&category=" + categoryId;
+        }
+        return fetch(queryURL)
             .then(res => res.json())
             .then(res => {
                 if (res.response_code === 0) {
