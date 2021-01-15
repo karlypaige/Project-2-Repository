@@ -1,6 +1,16 @@
 const EventEmitter = require("events");
-const { query } = require("express");
 const fetch = require("node-fetch");
+
+function errCode(response_code) {
+    let message;
+    switch (response_code) {
+        case 1: message = "No results"; break;
+        case 2: message = "Invalid parameter"; break;
+        case 3: message = "Token not found"; break;
+        case 4: message = "Token empty"; break;
+    }
+    return new Error(message);
+}
 
 class session extends EventEmitter {
     constructor(options = {}) {
@@ -19,7 +29,17 @@ class session extends EventEmitter {
         this._getNewToken();
     }
 
+    getQuestions(n = 1) {
+        n = Math.max(Math.floor(n), 1);
+        return fetch(`https://opentdb.com/api.php?amount=${n}&token=${this.token}`)
+            .then(res => res.json())
+            .then(res => {
+                if (res.response_code === 0) {
 
+                }
+            })
+            .catch(this._emitError);
+    }
 
     _getNewToken() {
         fetch("https://opentdb.com/api_token.php?command=request")
