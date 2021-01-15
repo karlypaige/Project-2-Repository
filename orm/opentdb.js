@@ -30,7 +30,7 @@ class session extends EventEmitter {
     }
 
     getQuestions(n = 1) {
-        n = Math.max(Math.floor(n), 1);
+        n = Math.min(Math.max(Math.floor(n), 1), 50);
         return fetch(`https://opentdb.com/api.php?amount=${n}&token=${this.token}`)
             .then(res => res.json())
             .then(res => {
