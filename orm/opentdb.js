@@ -77,14 +77,7 @@ class session extends EventEmitter {
 session.getCategories = function() {
     return fetch("https://opentdb.com/api_category.php")
         .then(res => res.json())
-        .then(res => {
-            if (res.response_code === 0) {
-                return res.trivia_categories;
-            }
-            else {
-                throw errCode(res.response_code);
-            }
-        });
+        .then(res => res.trivia_categories);
 };
 
 session.getQuestionCount = function(categoryId) {
@@ -97,14 +90,7 @@ session.getQuestionCount = function(categoryId) {
     }
     return fetch(queryURL)
         .then(res => res.json())
-        .then(res => {
-            if (res.response_code === 0) {
-                return res.overall || res.category_question_count
-            }
-            else {
-                throw errCode(res.response_code);
-            }
-        });
+        .then(res => res.overall || res.category_question_count);
 }
 
 module.exports = session;
