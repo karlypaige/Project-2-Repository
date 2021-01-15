@@ -1,4 +1,5 @@
 const EventEmitter = require("events");
+const { query } = require("express");
 const fetch = require("node-fetch");
 
 class session extends EventEmitter {
@@ -52,5 +53,29 @@ session.getCategories = function() {
             }
         });
 };
+
+session.getQuestionCount = function(categoryId) {
+    let queryURL;
+    if (categoryId) {
+        queryURL = "https://opentdb.com/api_count.php?category=" + categoryId;
+    }
+    else {
+        queryURL = "https://opentdb.com/api_count_global.php";
+    }
+    return fetch(queryURL)
+        .then(res => res.json())
+        .then(res => {
+            if (res.response_code === 0) {
+                return res.overall || res.category_question_count
+            }
+            else {
+                let err = "Could not get question count";
+                if (categoryId) {
+                    err += " for category ID: " + categoryId;
+                }
+                throw new Error(err);
+            }
+        });
+}
 
 module.exports = session;
