@@ -38,10 +38,10 @@ class session extends EventEmitter {
                     return res.results;
                 }
                 else {
-                    throw errCode(res.response_code);
+                    this._emitError(errCode(res.response_code));
                 }
             })
-            .catch(this._emitError);
+            .catch(err => this._emitError(err));
     }
 
     _getNewToken() {
@@ -53,10 +53,10 @@ class session extends EventEmitter {
                     this.emit("ready");
                 }
                 else {
-                    throw errCode(res.response_code);
+                    this._emitError(errCode(res.response_code));
                 }
             })
-            .catch(this._emitError);
+            .catch(err => this._emitError(err));
     }
 
     _emitError(err) {
