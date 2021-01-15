@@ -29,11 +29,17 @@ class session extends EventEmitter {
         this._getNewToken();
     }
 
-    getQuestions(n = 1, categoryId) {
+    getQuestions(n = 1, categoryId, difficulty) {
         let queryURL = `https://opentdb.com/api.php?amount=${n}&token=${this.token}`;
         n = Math.min(Math.max(Math.floor(n), 1), 50);
         if (categoryId) {
             queryURL += "&category=" + categoryId;
+        }
+        if (difficulty) {
+            queryURL += "&difficulty=" + difficulty;
+        }
+        if (this.encoding) {
+            queryURL += "&encode=" + this.encoding;
         }
         return fetch(queryURL)
             .then(res => res.json())
