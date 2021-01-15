@@ -37,6 +37,9 @@ class session extends EventEmitter {
                 if (res.response_code === 0) {
 
                 }
+                else {
+                    throw errCode(res.response_code);
+                }
             })
             .catch(this._emitError);
     }
@@ -50,7 +53,7 @@ class session extends EventEmitter {
                     this.emit("ready");
                 }
                 else {
-                    this._emitError(new Error("Could not generate session token"));
+                    throw errCode(res.response_code);
                 }
             })
             .catch(this._emitError);
@@ -69,7 +72,7 @@ session.getCategories = function() {
                 return res.trivia_categories;
             }
             else {
-                throw new Error("Could not get category list");
+                throw errCode(res.response_code);
             }
         });
 };
@@ -89,11 +92,7 @@ session.getQuestionCount = function(categoryId) {
                 return res.overall || res.category_question_count
             }
             else {
-                let err = "Could not get question count";
-                if (categoryId) {
-                    err += " for category ID: " + categoryId;
-                }
-                throw new Error(err);
+                throw errCode(res.response_code);
             }
         });
 }
