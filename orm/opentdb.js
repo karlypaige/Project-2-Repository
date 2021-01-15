@@ -35,7 +35,7 @@ class session extends EventEmitter {
             .then(res => res.json())
             .then(res => {
                 if (res.response_code === 0) {
-
+                    return res.results;
                 }
                 else {
                     throw errCode(res.response_code);
