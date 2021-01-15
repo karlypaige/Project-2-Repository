@@ -28,6 +28,9 @@ class session extends EventEmitter {
                     this.token = res.token;
                     this.emit("ready");
                 }
+                else {
+                    this._emitError(new Error("Could not generate session token"));
+                }
             })
             .catch(this._emitError);
     }
@@ -38,7 +41,16 @@ class session extends EventEmitter {
 }
 
 session.getCategories = function() {
-    
+    return fetch("https://opentdb.com/api_category.php")
+        .then(res => res.json())
+        .then(res => {
+            if (res.response_code === 0) {
+                return res.trivia_categories;
+            }
+            else {
+                throw new Error("Could not get category list");
+            }
+        });
 };
 
 module.exports = session;
