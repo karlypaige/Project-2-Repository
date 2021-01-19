@@ -27,6 +27,11 @@ class session extends EventEmitter {
         }
     }
 
+    // Alias for session.on("ready")
+    ready(callback) {
+        this.on("ready", callback);
+    }
+
     // Get a new token for this instance
     reset() {
         this._getNewToken();
