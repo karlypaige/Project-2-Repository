@@ -1,6 +1,7 @@
 const EventEmitter = require("events");
 const fetch = require("node-fetch");
 
+// Process response code when non-zero
 function errCode(response_code) {
     let message;
     switch (response_code) {
@@ -12,6 +13,7 @@ function errCode(response_code) {
     return new Error(message);
 }
 
+// New session with token
 class session extends EventEmitter {
     constructor(options = {}) {
         super();
@@ -25,10 +27,12 @@ class session extends EventEmitter {
         }
     }
 
+    // Get a new token for this instance
     reset() {
         this._getNewToken();
     }
 
+    // Get n questions
     getQuestions(n = 1, categoryId, difficulty) {
         let queryURL = `https://opentdb.com/api.php?amount=${n}&token=${this.token}`;
         n = Math.min(Math.max(Math.floor(n), 1), 50);
@@ -54,6 +58,7 @@ class session extends EventEmitter {
             .catch(err => this._emitError(err));
     }
 
+    // Internal method to obtain a new token and emit 'ready'
     _getNewToken() {
         fetch("https://opentdb.com/api_token.php?command=request")
             .then(res => res.json())
@@ -69,17 +74,20 @@ class session extends EventEmitter {
             .catch(err => this._emitError(err));
     }
 
+    // Internal method to emit an error
     _emitError(err) {
         this.emit("error", err);
     }
 }
 
+// Get a list of categories with IDs
 session.getCategories = function() {
     return fetch("https://opentdb.com/api_category.php")
         .then(res => res.json())
         .then(res => res.trivia_categories);
 };
 
+// Get question count data (optionally by category)
 session.getQuestionCount = function(categoryId) {
     let queryURL;
     if (categoryId) {
