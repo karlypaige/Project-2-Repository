@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var Scores = sequelize.define("Scores", {
     // Giving the Author model a name of type STRING
     score: {
@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  Scores.associate = function(models) {
+  Scores.associate = function (models) {
     // Associating Author with Posts
     // When an Author is deleted, also delete any associated Posts
     Scores.belongsTo(models.User, {
