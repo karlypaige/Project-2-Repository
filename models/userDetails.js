@@ -25,5 +25,14 @@ module.exports = function (sequelize, DataTypes) {
         }
       }
     });
+    UserDetails.associate = function (models) {
+        // Associating UserDetails with User
+        UserDetails.belongsTo(models.User, {
+          foreignKey: {
+            allowNull: false
+          }
+        });
+      };
+
     return UserDetails;
 };
