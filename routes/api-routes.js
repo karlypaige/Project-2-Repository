@@ -84,10 +84,12 @@ module.exports = function (app) {
   });
 
   app.post("/api/myscores", (req, res) => {
-    db.Scores.create({
-      score: req.body.score,
-      UserId: req.user.id
-    })
-      .then(data => res.json(data));
+    if (req.user) {
+      db.Scores.create({
+        score: req.body.score,
+        UserId: req.user.id
+      })
+        .then(data => res.json(data));
+    }
   });
 };
