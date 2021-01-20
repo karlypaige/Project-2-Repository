@@ -12,8 +12,8 @@ var db = {};
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
-  // var password = require("../../password.js");
-  var sequelize = new Sequelize(config.database, config.username, /* password.getPassword(),*/ config.password, config);
+  require("dotenv").config();
+  var sequelize = new Sequelize(config.database, config.username, process.env.DB_PASS, config);
 }
 
 fs
