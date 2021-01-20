@@ -1,4 +1,4 @@
-var token;
+var __otdb_token;
 
 // Process response code when non-zero
 function errCode(response_code) {
@@ -17,7 +17,7 @@ function getNewToken() {
     $.get("https://opentdb.com/api_token.php?command=request")
         .then(res => {
             if (res.response_code === 0) {
-                token = res.token;
+                __otdb_token = res.token;
             }
             else {
                 throw errCode(res.response_code);
@@ -27,7 +27,7 @@ function getNewToken() {
 
 // Get n questions
 function getQuestions(n = 1, categoryId, difficulty) {
-    let queryURL = `https://opentdb.com/api.php?amount=${n}&token=${token}`;
+    let queryURL = `https://opentdb.com/api.php?amount=${n}&token=${__otdb_token}`;
     n = Math.min(Math.max(Math.floor(n), 1), 50);
     if (categoryId) {
         queryURL += "&category=" + categoryId;
