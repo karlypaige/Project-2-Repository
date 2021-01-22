@@ -10,4 +10,5 @@ cache:
 services:
   - mysql
 before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS games_db;'
+  - npm i
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS testdb;'
