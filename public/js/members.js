@@ -39,7 +39,7 @@ $(document).ready(() => {
         user_name: uName
       })
         .then(() => {
-          window.location.replace("/game");
+          window.location.replace("/trivia");
           // If there's an error, handle it by throwing up a bootstrap alert
         })
         .catch(handleLoginErr);
