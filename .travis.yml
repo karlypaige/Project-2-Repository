@@ -8,6 +8,8 @@ cache:
   directories:
     - node_modules
 services:
+  - npm
   - mysql
 before_install:
+  - npm i
   - mysql -e 'CREATE DATABASE IF NOT EXISTS testdb;'
