@@ -15,16 +15,16 @@ $(document).ready(() => {
     userDetailsForm.on("submit", event => {
       event.preventDefault();
       const userData = {
-        first_name: fNameInput.val().trim(),
-        last_name: lNameInput.val().trim(),
-        user_name: uNameInput.val().trim()
+        firstName: fNameInput.val().trim(),
+        lastName: lNameInput.val().trim(),
+        userName: uNameInput.val().trim()
       };
   
-      if (!userData.first_name || !userData.last_name || !userData.user_name) {
+      if (!userData.firstName || !userData.lastName || !userData.userName) {
         return;
       }
       // If we have all three names, run the storeUserDetails function
-      storeUserDetails(userData.first_name, userData.last_name, userData.user_name);
+      storeUserDetails(userData.firstName, userData.lastName, userData.userName);
       fNameInput.val("");
       lNameInput.val("");
       uNameInput.val("");
@@ -34,9 +34,9 @@ $(document).ready(() => {
     // Otherwise we log any errors
     function storeUserDetails(fName, lName, uName) {
       $.post("/api/userDetails", {
-        first_name: fName,
-        last_name: lName,
-        user_name: uName
+        firstName: fName,
+        lastName: lName,
+        userName: uName
       })
         .then(() => {
           window.location.replace("/trivia");
