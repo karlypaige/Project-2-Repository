@@ -39,7 +39,7 @@ $(document).ready(() => {
   // Otherwise we log any errors
   function storeUserDetails(fName, lName, uName) {
     $.ajax("/api/userDetails", {
-      method: "update",
+      method: "put",
       data: {
         firstName: fName,
         lastName: lName,

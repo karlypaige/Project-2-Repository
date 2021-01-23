@@ -26,15 +26,14 @@ module.exports = function (app) {
       email: req.body.email,
       password: req.body.password
     })
-      .then(() => {
-        res.redirect(307, "/api/login");
-      })
+      .then(console.log)
+      .then(() => res.redirect(307, "/api/login"))
       .catch(err => {
         res.status(401).json(err);
       });
   });
 
-  app.post("/api/userDetails", (req, res) => {
+  app.update("/api/userDetails", (req, res) => {
     console.log("******hitting userDetails");
     console.log(req.body);
     db.UserDetails.create({
