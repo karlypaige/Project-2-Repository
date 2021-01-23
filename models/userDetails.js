@@ -2,7 +2,6 @@ module.exports = function (sequelize, DataTypes) {
     const UserDetails = sequelize.define("UserDetails", {
       firstName: {
         type: DataTypes.STRING,
-        allowNull: false,
         unique: true,
         validate: {
           len: [1,30]
@@ -10,7 +9,6 @@ module.exports = function (sequelize, DataTypes) {
       },
       lastName: {
         type: DataTypes.STRING,
-        allowNull: false,
         unique: true,
         validate: {
           len: [1,30]
@@ -18,7 +16,6 @@ module.exports = function (sequelize, DataTypes) {
       },
       userName: {
         type: DataTypes.STRING,
-        allowNull: false,
         unique: true,
         validate: {
           len: [1,30]
