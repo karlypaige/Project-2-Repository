@@ -38,9 +38,9 @@ module.exports = function (app) {
     console.log("******hitting userDetails");
     console.log(req.body);
     db.UserDetails.create({
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      user_name: req.body.user_name,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      userName: req.body.userName,
       UserId: req.user.id
       }
     )
