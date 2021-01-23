@@ -4,7 +4,8 @@ $(document).ready(() => {
     var score = 0;
     var questArray = [];
     var quest = $("#questions");
-        
+    var message = $("#message");
+
 
     $("#play").on("click", function () {
         const diff = $("#difficulty").val();
@@ -13,22 +14,16 @@ $(document).ready(() => {
             .then(() => {
                 getQuestions(10, undefined, diff)
                     .then(function (questions) {
-                        // var quest = $("#questions")
-                        console.log(questions);
+                        message.empty()
                         questArray = questions;
-
                         renderQuestion();
                     })
-                }
+            }
             );
     });
 
     function renderQuestion() {
         question = questArray.pop();
-
-        
-
-        console.log(question);
 
         if (question["type"] === "multiple") {
             //array to hold multiple choice answers for shuffling
@@ -61,10 +56,11 @@ $(document).ready(() => {
             console.log(event.target.textContent);
             if (event.target.textContent.toUpperCase() === question["correct_answer"].toUpperCase()) {
                 // quest.empty();
-                quest.html(`<p>"YOU ARE RIGHT"</p>`);
+                message.html(`<p>"YOU ARE RIGHT"</p>`);
+                
                 score += 1;
             } else {
-                quest.html(`<p>"NO!!"</p>`);
+                message.html(`<p>"NO!!"</p>`);
             }
 
             //if more questions display the next one
@@ -83,14 +79,13 @@ $(document).ready(() => {
     }
 
     function storeScores(newScore) {
-        console.log("in storeScores****************************")
         $.ajax("/api/myscores", {
-          method: "post",
-          data: {
-            score: newScore
-          }
+            method: "post",
+            data: {
+                score: newScore
+            }
         })
-      };
+    };
 
     //function for shuffling an array
     function shuffleArray(array) {
