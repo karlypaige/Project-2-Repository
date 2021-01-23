@@ -66,10 +66,12 @@ module.exports = function (app) {
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id
-      });
+      db.User.findByPk(req.user.id, {
+        attributes: ["id", "email"],
+        include: db.UserDetails
+      })
+        .then(data => res.status(200).json(data))
+        .catch(() => res.status(500).end());
     }
   });
 

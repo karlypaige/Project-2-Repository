@@ -9,6 +9,11 @@ $(document).ready(() => {
   // and updates the HTML on the page
   $.get("/api/user_data").then(data => {
     $(".member-name").text(data.email);
+    if (data.UserDetail) {
+      fNameInput.val(data.UserDetail.firstName);
+      lNameInput.val(data.UserDetail.lastName);
+      uNameInput.val(data.UserDetail.userName);
+    }
   });
   
   // When the signup button is clicked, we validate the email and password are not blank
