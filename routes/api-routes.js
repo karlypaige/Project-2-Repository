@@ -72,4 +72,42 @@ module.exports = function (app) {
       });
     }
   });
+
+  /* trivia game routes */
+  
+  app.get("/api/myscores", (req, res) => {
+    if (!req.user) {
+      res.json({});
+    }
+    else {
+      db.User.findByPk(req.user.id, {
+        attributes: ["id", "email"],
+        include: db.Scores,
+        order: [ [db.Scores, "score", "desc"] ]
+      })
+        .then(data => res.json(data));
+    }
+  });
+
+  app.get("/api/highscores", (req, res) => {
+    db.Scores.findAll({
+      include: {
+        model: db.User,
+        attributes: ["email"]
+      },
+      order: [ ["score", "desc"] ],
+      limit: 10
+    })
+      .then(data => res.json(data));
+  });
+
+  app.post("/api/myscores", (req, res) => {
+    if (req.user) {
+      db.Scores.create({
+        score: req.body.score,
+        UserId: req.user.id
+      })
+        .then(data => res.json(data));
+    }
+  });
 };
