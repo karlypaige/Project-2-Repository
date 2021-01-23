@@ -3,8 +3,6 @@ $(document).ready(() => {
     // and updates the HTML on the page
     var score = 0;
 
-    $("body").attr("style", "background-image: url(../images/trivia-background.jpg);");
-
     $("#play").on("click", function () {
         const diff = $("#difficulty").val();
 

@@ -22,11 +22,11 @@ module.exports = function (app) {
   });
 
   app.get("/highscores", (req, res) => {
-    res.render("highscores", {});
+    res.render("highscores", { styles: ["triviagame"] });
   });
 
   app.get("/trivia", (req, res) => {
-    res.render("trivia", {});
+    res.render("trivia", { styles: ["triviagame"] });
   });
 
 

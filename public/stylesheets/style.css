@@ -10,13 +10,3 @@ img {
 .test {
   background-color:#dc5c1f;
 }
-
-.hsbackground {
-  background-image: url(../images/trivia-background.jpg);
-  background-repeat:no-repeat;
-  background-position:center;
-}
-
-.hsbutton {
-  background-color: #f8af0b;
-}
