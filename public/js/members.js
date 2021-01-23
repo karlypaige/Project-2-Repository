@@ -38,10 +38,13 @@ $(document).ready(() => {
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
   function storeUserDetails(fName, lName, uName) {
-    $.post("/api/userDetails", {
-      firstName: fName,
-      lastName: lName,
-      userName: uName
+    $.ajax("/api/userDetails", {
+      method: "update",
+      data: {
+        firstName: fName,
+        lastName: lName,
+        userName: uName
+      }
     })
       .then(() => {
         console.log("in the reroute to trivia")
