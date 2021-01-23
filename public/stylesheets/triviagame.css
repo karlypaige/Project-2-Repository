@@ -1,7 +1,7 @@
 body {
     background-image: url(../images/trivia-background.jpg);
     background-repeat:no-repeat;
-    background-position:center;
+    background-size: cover;
 }
 
 .hsbutton {
