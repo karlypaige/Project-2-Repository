@@ -26,30 +26,26 @@ module.exports = function (app) {
       email: req.body.email,
       password: req.body.password
     })
-      .then(() => {
-        res.redirect(307, "/api/login");
-      })
+      .then(user => db.UserDetails.create({ UserId: user.id }))
+      .then(() => res.redirect(307, "/api/login"))
       .catch(err => {
         res.status(401).json(err);
       });
   });
 
-  app.post("/api/userDetails", (req, res) => {
-    console.log("******hitting userDetails");
-    console.log(req.body);
-    db.UserDetails.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      userName: req.body.userName,
-      UserId: req.user.id
-      }
-    )
-      .then(() => {
-        res.status(200).end();
+  app.put("/api/userDetails", (req, res) => {
+    if (req.user) {
+      console.log("******hitting userDetails");
+      db.UserDetails.update(req.body, {
+        where: { UserId: req.user.id }
       })
-      .catch(err => {
-        res.status(500).json(err);
-      });
+        .then(() => {
+          res.status(200).end();
+        })
+        .catch(err => {
+          res.status(500).json(err);
+        });
+    }
   });
 
   // Route for logging user out
@@ -66,10 +62,12 @@ module.exports = function (app) {
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id
-      });
+      db.User.findByPk(req.user.id, {
+        attributes: ["id", "email"],
+        include: db.UserDetails
+      })
+        .then(data => res.status(200).json(data))
+        .catch(() => res.status(500).end());
     }
   });
 
