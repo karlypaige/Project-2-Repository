@@ -40,3 +40,7 @@ $(document).ready(() => {
     $("#alert").fadeIn(500);
   }
 });
+
+$("#trivia").on("click", function () {
+  window.location.replace("/trivia");
+});

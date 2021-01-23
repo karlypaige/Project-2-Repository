@@ -10,4 +10,12 @@ $.get("/api/highscores")
             content = "No scores yet!";
         }
         scoreListEl.append(content);
-    })
+    });
+
+$("#playagain").on("click", function () {
+    window.location.replace("/trivia");
+});
+
+$("#mainmenu").on("click", function () {
+    window.location.replace("/");
+});
