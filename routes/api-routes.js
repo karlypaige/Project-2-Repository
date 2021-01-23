@@ -90,7 +90,11 @@ module.exports = function (app) {
     db.Scores.findAll({
       include: {
         model: db.User,
-        attributes: ["email"]
+        attributes: ["email"],
+        include: {
+          model: db.UserDetails,
+          attributes: ["userName"]
+        }
       },
       order: [ ["score", "desc"] ],
       limit: 10
