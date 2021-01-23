@@ -35,7 +35,6 @@ module.exports = function (app) {
 
   app.put("/api/userDetails", (req, res) => {
     if (req.user) {
-      console.log("******hitting userDetails");
       db.UserDetails.update(req.body, {
         where: { UserId: req.user.id }
       })

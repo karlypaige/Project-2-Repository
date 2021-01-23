@@ -75,11 +75,22 @@ $(document).ready(() => {
                 quest.html(`<p>"Your score is ${score}</p>`);
 
                 //store scores in database
-                
+                storeScores(score);
+
             }
         })
 
     }
+
+    function storeScores(newScore) {
+        console.log("in storeScores****************************")
+        $.ajax("/api/myscores", {
+          method: "post",
+          data: {
+            score: newScore
+          }
+        })
+      };
 
     //function for shuffling an array
     function shuffleArray(array) {
