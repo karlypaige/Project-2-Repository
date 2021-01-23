@@ -39,6 +39,7 @@ $(document).ready(() => {
         userName: uName
       })
         .then(() => {
+          console.log("in the reroute to trivia")
           window.location.replace("/trivia");
           // If there's an error, handle it by throwing up a bootstrap alert
         })

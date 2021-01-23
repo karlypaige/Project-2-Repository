@@ -45,10 +45,10 @@ module.exports = function (app) {
       }
     )
       .then(() => {
-        res.redirect(307, "/api/login");
+        res.status(200).end();
       })
       .catch(err => {
-        res.status(401).json(err);
+        res.status(500).json(err);
       });
   });
 

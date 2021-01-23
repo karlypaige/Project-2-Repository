@@ -1,6 +1,7 @@
 $(document).ready(() => {
     // This file just does a GET request to figure out which user is logged in
     // and updates the HTML on the page
+    var score = 0;
 
     $("body").attr("style", "background-image: url(../images/trivia-background.jpg);");
 
@@ -28,11 +29,14 @@ $(document).ready(() => {
 
                 $(".answer").on("click", function (event) {
                     console.log(event.target.textContent);
-                    if (event.target.textContent === questions[0]["correct_answer"]) {
+                    if (event.target.textContent.toUpperCase() === questions[0]["correct_answer"].toUpperCase()) {
                         // quest.empty();
                         quest.html(`<p>"YOU ARE RIGHT"</p>`);
+                        score += 1;
+                        console.log(score);
                     } else {
                         quest.html(`<p>"NO!!"</p>`);
+                        console.log(score);
                     }
                 })
 
