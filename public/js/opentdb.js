@@ -14,7 +14,7 @@ function errCode(response_code) {
 
 // Obtain a new token
 function getNewToken() {
-    $.get("https://opentdb.com/api_token.php?command=request")
+    return $.get("https://opentdb.com/api_token.php?command=request")
         .then(res => {
             if (res.response_code === 0) {
                 __otdb_token = res.token;

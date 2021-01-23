@@ -1,34 +1,29 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-    </div>
-  </div>
-</nav>
 <div class="container">
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+  <div class="row justify-content-center ">
+    <div class="col-5 shadow-lg  bg-white rounded">
       <h2>Trivia</h2>
 
-   
-        <div id="questions">
-          <img src="/images/Question-marks.jpg">
-        </div>
 
-        
-        <select id="difficulty">
-            <option value="easy">easy</option>
-            <option value="medium">medium</option>
-            <option value="hard">hard</option>
-        </select>
-        <button class="btn btn-default" id="play">Play</button>
-    
+      <div id="questions">
+        <img src="/images/Question-marks.jpg">
+      </div>
+
+      <div id="message"></div>
+
+
+      <select id="difficulty">
+        <option value="easy">easy</option>
+        <option value="medium">medium</option>
+        <option value="hard">hard</option>
+      </select>
+      <button class="btn btn-trivia" id="play">Play</button>
+
 
       <br />
-      <p>Find highs scores <a href="/">here</a></p>
+      <p>Find high scores <a href="/highscores">here</a></p>
+
     </div>
   </div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/opentdb.js"></script>
 <script type="text/javascript" src="js/trivia.js"></script>

@@ -1,0 +1,11 @@
+body {
+    background-image: url(../images/trivia-background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.btn-trivia {
+    background-color: #f8af0b;
+}
