@@ -22,8 +22,13 @@ module.exports = function (app) {
   });
 
   app.get("/highscores", (req, res) => {
-    res.render("highscores", {});
+    res.render("highscores", { styles: ["triviagame"] });
   });
+
+  app.get("/trivia", (req, res) => {
+    res.render("trivia", { styles: ["triviagame"] });
+  });
+
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page

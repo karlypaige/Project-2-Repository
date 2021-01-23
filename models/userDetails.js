@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
     const UserDetails = sequelize.define("UserDetails", {
-      first_name: {
+      firstName: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
           len: [1,30]
         }
       },
-      last_name: {
+      lastName: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
@@ -16,7 +16,7 @@ module.exports = function (sequelize, DataTypes) {
           len: [1,30]
         }
       },
-      user_name: {
+      userName: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,

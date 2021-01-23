@@ -34,6 +34,24 @@ module.exports = function (app) {
       });
   });
 
+  app.post("/api/userDetails", (req, res) => {
+    console.log("******hitting userDetails");
+    console.log(req.body);
+    db.UserDetails.create({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      userName: req.body.userName,
+      UserId: req.user.id
+      }
+    )
+      .then(() => {
+        res.status(200).end();
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  });
+
   // Route for logging user out
   app.get("/logout", (req, res) => {
     req.logout();

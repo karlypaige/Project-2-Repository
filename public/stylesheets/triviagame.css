@@ -1,0 +1,9 @@
+body {
+    background-image: url(../images/trivia-background.jpg);
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+
+.hsbutton {
+    background-color: #f8af0b;
+}
