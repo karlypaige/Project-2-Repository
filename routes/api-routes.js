@@ -1,9 +1,11 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-
-const { v4: uuidv4 } = require('uuid');
-//uuidv4();
+const createDOMPurify = require('dompurify');
+const jsdom = require('jsdom');
+const window = new jsdom.JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
+const sanitize = DOMPurify.sanitize;
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -21,10 +23,9 @@ module.exports = function (app) {
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/signup", (req, res) => {
-    console.log("******hitting sign up");
     db.User.create({
-      email: req.body.email,
-      password: req.body.password
+      email: sanitize(req.body.email),
+      password: sanitize(req.body.password)
     })
       .then(user => db.UserDetails.create({ UserId: user.id }))
       .then(() => res.redirect(307, "/api/login"))
@@ -35,7 +36,11 @@ module.exports = function (app) {
 
   app.put("/api/userDetails", (req, res) => {
     if (req.user) {
-      db.UserDetails.update(req.body, {
+      db.UserDetails.update({
+        firstName: sanitize(req.body.firstName),
+        lastName: sanitize(req.body.lastName),
+        userName: sanitize(req.body.userName)
+      }, {
         where: { UserId: req.user.id }
       })
         .then(() => {
@@ -44,6 +49,8 @@ module.exports = function (app) {
         .catch(err => {
           res.status(500).json(err);
         });
+    } else {
+      res.render("authentication_error", {});
     }
   });
 
@@ -57,7 +64,7 @@ module.exports = function (app) {
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
-      res.json({});
+      res.render("authentication_error", {});
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
@@ -71,16 +78,16 @@ module.exports = function (app) {
   });
 
   /* trivia game routes */
-  
+
   app.get("/api/myscores", (req, res) => {
     if (!req.user) {
-      res.json({});
+      res.render("authentication_error", {});
     }
     else {
       db.User.findByPk(req.user.id, {
         attributes: ["id", "email"],
         include: db.Scores,
-        order: [ [db.Scores, "score", "desc"] ]
+        order: [[db.Scores, "score", "desc"]]
       })
         .then(data => res.json(data));
     }
@@ -96,7 +103,7 @@ module.exports = function (app) {
           attributes: ["userName"]
         }
       },
-      order: [ ["score", "desc"] ],
+      order: [["score", "desc"]],
       limit: 10
     })
       .then(data => res.json(data));
@@ -105,10 +112,12 @@ module.exports = function (app) {
   app.post("/api/myscores", (req, res) => {
     if (req.user) {
       db.Scores.create({
-        score: req.body.score,
+        score: sanitize(req.body.score),
         UserId: req.user.id
       })
         .then(data => res.json(data));
+    } else {
+      res.render("authentication_error", {});
     }
   });
 };

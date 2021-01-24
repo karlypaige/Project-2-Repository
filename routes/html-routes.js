@@ -29,7 +29,7 @@ module.exports = function (app) {
     res.render("highscores", { styles: ["triviagame"] });
   });
 
-  app.get("/trivia", (req, res) => {
+  app.get("/trivia", isAuthenticated, (req, res) => {
     res.render("trivia", { styles: ["triviagame"] });
   });
 

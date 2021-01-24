@@ -5,6 +5,7 @@ $(document).ready(() => {
   const lNameInput = $("input#lName-input");
   const uNameInput = $("input#uName-input");
 
+
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   $.get("/api/user_data").then(data => {
@@ -15,7 +16,7 @@ $(document).ready(() => {
       uNameInput.val(data.UserDetail.userName);
     }
   });
-  
+
   // When the signup button is clicked, we validate the email and password are not blank
   userDetailsForm.on("submit", event => {
     event.preventDefault();
