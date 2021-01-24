@@ -6,12 +6,21 @@ body {
     background-size: cover;
 }
 
-.btn-trivia {
-    background-color: #f8af0b;
+img {
+    border-radius: 25px;
 }
 
 .answer {
     margin: .5%;
+}
+
+.btn-trivia {
+    background-color: #f8af0b;
+}
+
+#triviaBlock{
+    margin: 25%;
+    
 }
 
 #questions {
