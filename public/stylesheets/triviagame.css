@@ -9,3 +9,33 @@ body {
 .btn-trivia {
     background-color: #f8af0b;
 }
+
+.answer {
+    margin: .5%;
+}
+
+#questions {
+    background-color: #f8af0b;
+    border-radius: 25px;
+    padding: 10%;
+}
+
+#message {
+    background-color: #f8e3b3;
+    border-radius: 25px;
+    margin: 5%;
+}
+
+#message p {
+    text-align: center;
+    font-weight: 900;
+    
+}
+
+#right{
+    color:green;
+}
+
+#wrong{
+    color:rgb(204, 50, 50);
+}

@@ -1,23 +1,23 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row justify-content-center ">
     <div class="col-5 shadow-lg  bg-white rounded">
       <h2>Trivia</h2>
 
-
-      <div id="questions">
-        <img src="/images/Question-marks.jpg">
+      <div class="col center" id="questions">
+        <img class="img-fluid" src="/images/Question-marks.jpg">
       </div>
 
-      <div id="message"></div>
+      <div class="col-11 center" id="message"></div>
 
-
-      <select id="difficulty">
-        <option value="easy">easy</option>
-        <option value="medium">medium</option>
-        <option value="hard">hard</option>
-      </select>
-      <button class="btn btn-trivia" id="play">Play</button>
-
+      <div class="d-flex p-2 justify-content-enter">
+        </play>
+        <select id="difficulty">
+          <option value="easy">easy</option>
+          <option value="medium">medium</option>
+          <option value="hard">hard</option>
+        </select>
+        <button class="btn btn-trivia" id="play">Play</button>
+      </div>
 
       <br />
       <p>Find high scores <a href="/highscores">here</a></p>
