@@ -1,5 +1,3 @@
-const scoreListEl = $("#score-list");
-
 $.get("/api/highscores")
     .then(scores => {
         let content;
@@ -9,13 +7,5 @@ $.get("/api/highscores")
         else {
             content = "No scores yet!";
         }
-        scoreListEl.append(content);
+        $("#score-list").append(content);
     });
-
-$("#playagain").on("click", function () {
-    window.location.replace("/trivia");
-});
-
-$("#mainmenu").on("click", function () {
-    window.location.replace("/trivia");
-});
