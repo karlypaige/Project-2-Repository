@@ -9,3 +9,14 @@ $.get("/api/highscores")
         }
         $("#score-list").append(content);
     });
+<<<<<<< HEAD
+=======
+
+$("#playagain").on("click", function () {
+    window.location.replace("/trivia");
+});
+
+$("#mainmenu").on("click", function () {
+    window.location.replace("/trivia");
+});
+>>>>>>> main

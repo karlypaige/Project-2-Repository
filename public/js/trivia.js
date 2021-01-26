@@ -9,7 +9,7 @@ $(document).ready(() => {
 
     $("#play").on("click", function () {
         const diff = $("#difficulty").val();
-
+        score = 0;
         getNewToken()
             .then(() => {
                 getQuestions(10, undefined, diff)
