@@ -14,7 +14,7 @@ Or the user can simply login:
 ![log-in-form](public/images/login-form.png)
 
 
-Folloing login or after entering user details user is then routed to the trivia page:
+Following login or after entering user details user is then routed to the trivia page:
 
 ![trivia-landing-page](public/images/Trivia-page.png)
 
@@ -29,7 +29,7 @@ If the user gives an incorrect anser they are presented with the correct answer 
 
 ![trivia-incorrect-answer](public/images/trivia-incorrect-answer.png)
 
-Otherwise the message just shows "You are correct" and the next question is presented:
+Otherwise the message just shows "YOU ARE RIGHT" and the next question is presented:
 
 ![trivia-correct-answer](public/images/trivia-correct-answer.png)
 
@@ -41,3 +41,15 @@ At the end of a ten question session the user is presented with their score for 
 They then have the option of visiting the "high scores" page where the top 10 scores are presented:
 
 ![trivia-high-scores](public/images/scores.png)
+
+
+# Contributors
+
+Josh Wee
+Brett Winterstrom
+Erick Salgado
+Karly Maruyama
+
+# link to deployes app
+
+https://project2jebk.herokuapp.com/
