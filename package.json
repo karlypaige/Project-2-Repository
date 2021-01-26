@@ -1,7 +1,6 @@
 {
-  "name": "1-passport-example",
+  "name": "time-killer",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "npm run lint",
@@ -12,7 +11,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "dependencies": {
     "bcryptjs": "2.4.3",
     "dompurify": "^2.2.6",
@@ -37,5 +36,13 @@
     "eslint-plugin-prettier": "^2.6.2",
     "mocha": "^5.2.0",
     "prettier": "^1.13.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karlypaige/Project-2-Repository.git"
+  },
+  "bugs": {
+    "url": "https://github.com/karlypaige/Project-2-Repository/issues"
+  },
+  "homepage": "https://github.com/karlypaige/Project-2-Repository#readme"
 }
