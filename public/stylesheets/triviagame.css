@@ -28,6 +28,10 @@ img {
     padding: 10%;
 }
 
+#questions p {
+    font-weight: 900;
+}
+
 #message {
     background-color: #f8e3b3;
     border-radius: 25px;
@@ -36,7 +40,7 @@ img {
 
 #message p {
     text-align: center;
-    font-weight: 900;
+    font-weight: bold;
     
 }
 
