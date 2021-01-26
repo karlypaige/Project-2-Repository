@@ -6,6 +6,48 @@ body {
     background-size: cover;
 }
 
+img {
+    border-radius: 25px;
+}
+
+.answer {
+    margin: .5%;
+}
+
 .btn-trivia {
     background-color: #f8af0b;
+}
+
+#triviaBlock{
+    margin-top: 20%;
+}
+
+#questions {
+    background-color: #f8af0b;
+    border-radius: 25px;
+    padding: 10%;
+}
+
+#questions p {
+    font-weight: 900;
+}
+
+#message {
+    background-color: #f8e3b3;
+    border-radius: 25px;
+    margin: 5%;
+}
+
+#message p {
+    text-align: center;
+    font-weight: bold;
+    
+}
+
+#right{
+    color:green;
+}
+
+#wrong{
+    color:rgb(204, 50, 50);
 }

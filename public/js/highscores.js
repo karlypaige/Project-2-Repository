@@ -17,5 +17,5 @@ $("#playagain").on("click", function () {
 });
 
 $("#mainmenu").on("click", function () {
-    window.location.replace("/");
+    window.location.replace("/trivia");
 });

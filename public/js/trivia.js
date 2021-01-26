@@ -9,7 +9,7 @@ $(document).ready(() => {
 
     $("#play").on("click", function () {
         const diff = $("#difficulty").val();
-
+        score = 0;
         getNewToken()
             .then(() => {
                 getQuestions(10, undefined, diff)
@@ -38,9 +38,9 @@ $(document).ready(() => {
 
             //display question and shuffled answers
             quest.html(`<p>${question["question"]}</p>
-            <p><button class="answer">${answers[0]}</button>
-            <button class="answer">${answers[1]}</button>
-            <button class="answer">${answers[2]}</button>
+            <p><button class="answer">${answers[0]}</button></br>
+            <button class="answer">${answers[1]}</button></br>
+            <button class="answer">${answers[2]}</button></br>
             <button class="answer">${answers[3]}</button><p>`)
         } else if (question["type"] === "boolean") {
             //display true/false question and answers
@@ -56,11 +56,12 @@ $(document).ready(() => {
             console.log(event.target.textContent);
             if (event.target.textContent.toUpperCase() === question["correct_answer"].toUpperCase()) {
                 // quest.empty();
-                message.html(`<p>"YOU ARE RIGHT"</p>`);
+                message.html(`<p id="right">"YOU ARE RIGHT"</p>`);
                 
                 score += 1;
             } else {
-                message.html(`<p>"NO!!"</p>`);
+                message.html(`<p id="wrong">"NO!!"
+                </br>the correct answer is ${question["correct_answer"]}</p>`);
             }
 
             //if more questions display the next one
