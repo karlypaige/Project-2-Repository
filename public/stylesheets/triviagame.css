@@ -18,6 +18,10 @@ img {
     background-color: #f8af0b;
 }
 
+.btn-trivia-dark {
+    background-color: #DC5C1F;
+}
+
 #triviaBlock{
     margin-top: 20%;
 }
