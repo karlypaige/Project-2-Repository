@@ -18,8 +18,7 @@ $(document).ready(() => {
                         questArray = questions;
                         renderQuestion();
                     })
-            }
-            );
+            });
     });
 
     function renderQuestion() {
@@ -49,15 +48,14 @@ $(document).ready(() => {
             <button class="answer">FALSE</button></p>`)
         }
         else {
-            // if(questions[i])
+            // should never be here because mc and boolean are the only types of questions
+            throw new Error("Unhandled question type");
         };
 
         $(".answer").on("click", function (event) {
-            console.log(event.target.textContent);
             if (event.target.textContent.toUpperCase() === question["correct_answer"].toUpperCase()) {
                 // quest.empty();
                 message.html(`<p id="right">"YOU ARE RIGHT"</p>`);
-                
                 score += 1;
             } else {
                 message.html(`<p id="wrong">"NO!!"
@@ -73,7 +71,6 @@ $(document).ready(() => {
 
                 //store scores in database
                 storeScores(score);
-
             }
         })
 

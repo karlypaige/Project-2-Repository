@@ -50,7 +50,7 @@ module.exports = function (app) {
           res.status(500).json(err);
         });
     } else {
-      res.render("authentication_error", {});
+      res.status(401).json({ error: "Unauthorized user" });
     }
   });
 
@@ -64,7 +64,7 @@ module.exports = function (app) {
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
-      res.render("authentication_error", {});
+      res.status(401).json({ error: "Unauthorized user" });
     } else {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
@@ -79,13 +79,14 @@ module.exports = function (app) {
 
   /* trivia game routes */
 
+  // return the authenticated user's scores
   app.get("/api/myscores", (req, res) => {
     if (!req.user) {
-      res.render("authentication_error", {});
+      res.status(401).json({ error: "Unauthorized user" });
     }
     else {
       db.User.findByPk(req.user.id, {
-        attributes: ["id", "email"],
+        attributes: ["id", "email"], // don't return password hash
         include: db.Scores,
         order: [[db.Scores, "score", "desc"]]
       })
@@ -93,6 +94,7 @@ module.exports = function (app) {
     }
   });
 
+  // return the top 10 scores
   app.get("/api/highscores", (req, res) => {
     db.Scores.findAll({
       include: {
@@ -109,6 +111,7 @@ module.exports = function (app) {
       .then(data => res.json(data));
   });
 
+  // post a new score for auth'd user
   app.post("/api/myscores", (req, res) => {
     if (req.user) {
       db.Scores.create({
@@ -117,7 +120,7 @@ module.exports = function (app) {
       })
         .then(data => res.json(data));
     } else {
-      res.render("authentication_error", {});
+      res.status(401).json({ error: "Unauthorized user" });
     }
   });
 };
