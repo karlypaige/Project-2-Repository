@@ -79,13 +79,14 @@ module.exports = function (app) {
 
   /* trivia game routes */
 
+  // return the authenticated user's scores
   app.get("/api/myscores", (req, res) => {
     if (!req.user) {
       res.render("authentication_error", {});
     }
     else {
       db.User.findByPk(req.user.id, {
-        attributes: ["id", "email"],
+        attributes: ["id", "email"], // don't return password hash
         include: db.Scores,
         order: [[db.Scores, "score", "desc"]]
       })
@@ -93,6 +94,7 @@ module.exports = function (app) {
     }
   });
 
+  // return the top 10 scores
   app.get("/api/highscores", (req, res) => {
     db.Scores.findAll({
       include: {
@@ -109,6 +111,7 @@ module.exports = function (app) {
       .then(data => res.json(data));
   });
 
+  // post a new score for auth'd user
   app.post("/api/myscores", (req, res) => {
     if (req.user) {
       db.Scores.create({
