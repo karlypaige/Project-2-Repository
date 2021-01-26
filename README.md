@@ -46,10 +46,13 @@ They then have the option of visiting the "high scores" page where the top 10 sc
 # Contributors
 
 Josh Wee
+
 Brett Winterstrom
+
 Erick Salgado
+
 Karly Maruyama
 
-# link to deployes app
+# Link to deployed app
 
 https://project2jebk.herokuapp.com/
