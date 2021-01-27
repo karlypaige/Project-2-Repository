@@ -1,8 +1,32 @@
-form.signup,
+form.signup {
+  color: white;
+}
+
 form.login {
-  margin-top: 50px;
+  margin-top: 0px;
+  color: white
+ 
+}
+
+h2 {
+  color:#ed47ee
+}
+p {
+  color:  #ed47ee;
+}
+.black {
+  color: white;
 }
 
 .test {
-  background-color:#dc5c1f;
+  margin-left: 15rem;
+  margin-top: 5.5rem;
+}
+
+body {
+  background-image: url(../images/triviabackground.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }

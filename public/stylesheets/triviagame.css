@@ -1,5 +1,5 @@
 body {
-    background-image: url(../images/trivia-background.jpg);
+    background-image: url(../images/triviabackground.jpeg);
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -15,7 +15,7 @@ img {
 }
 
 .btn-trivia {
-    background-color: #f8af0b;
+    background-color:  #ed47ee;
 }
 
 .btn-trivia-dark {
@@ -23,17 +23,18 @@ img {
 }
 
 #triviaBlock{
-    margin-top: 20%;
+    margin-top: 10vh;
 }
 
 #questions {
-    background-color: #f8af0b;
+    background-color: #12afff;
     border-radius: 25px;
     padding: 10%;
 }
 
 #questions p {
     font-weight: 900;
+    color:black
 }
 
 #message {
